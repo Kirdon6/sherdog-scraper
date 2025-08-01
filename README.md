@@ -14,38 +14,37 @@ A comprehensive JavaScript package for scraping fighter data, events, and other 
 ## 📋 Development Roadmap
 
 ### Phase 1: Project Setup & Foundation
-- [ ] Initialize npm package with proper structure
-- [ ] Set up TypeScript configuration
-- [ ] Configure ESLint and Prettier
-- [ ] Set up Jest for testing
-- [ ] Create package.json with proper metadata
+- [x] Initialize npm package with proper structure
+- [x] Set up TypeScript configuration
+- [x] Configure ESLint and Prettier
+- [x] Set up Jest for testing
+- [x] Create package.json with proper metadata
 - [ ] Set up GitHub Actions for CI/CD
-- [ ] Configure proper .gitignore
+- [x] Configure proper .gitignore
 
 ### Phase 2: Core Infrastructure
-- [ ] Set up HTTP client (Axios/Fetch) with retry logic
-- [ ] Implement rate limiting and request queuing
-- [ ] Create base scraper class with common utilities
-- [ ] Set up HTML parsing with Cheerio/JSDOM
-- [ ] Implement caching mechanism
-- [ ] Create logging system
-- [ ] Set up configuration management
+- [x] Set up HTTP client (Axios/Fetch) with retry logic
+- [x] Implement rate limiting and request queuing
+- [x] Create base scraper class with common utilities
+- [x] Set up HTML parsing with Cheerio/JSDOM
+- [x] Implement caching mechanism
+- [x] Create logging system
+- [x] Set up configuration management
 
 ### Phase 3: Data Models & Types
-- [ ] Define TypeScript interfaces for all data structures
-- [ ] Create fighter profile data model
-- [ ] Define event and fight card structures
-- [ ] Set up fight result and statistics models
-- [ ] Create organization/weight class enums
-- [ ] Define API response types
+- [x] Define TypeScript interfaces for all data structures
+- [x] Create fighter profile data model
+- [x] Define event and fight card structures
+- [x] Set up fight result and statistics models
+- [x] Create organization/weight class enums
+- [x] Define API response types
 
 ### Phase 4: Core Scraping Features
-- [ ] **Fighter Profile Scraping**
-  - [ ] Basic fighter information (name, age, height, weight, etc.)
-  - [ ] Fight record and statistics
-  - [ ] Fight history with detailed results
-  - [ ] Fighter photos and media
-  - [ ] Current ranking and status
+- [x] **Fighter Profile Scraping**
+  - [x] Basic fighter information (name, age, height, weight, etc.)
+  - [x] Fight record and statistics
+  - [x] Fight history with detailed results
+  - [x] Current ranking and status
 
 - [ ] **Event Scraping**
   - [ ] Event listings and schedules
@@ -188,23 +187,53 @@ sherdog-scraper/
 
 ## 🚀 Usage Examples
 
+### Fighter Scraping & Discovery
+
 ```javascript
-import { SherdogScraper } from 'sherdog-scraper';
+import { SherdogScraper, FighterDiscovery } from 'sherdog-scraper';
 
 const scraper = new SherdogScraper({
-  rateLimit: 1000, // 1 request per second
+  rateLimit: 2000, // 2 seconds between requests
   cache: true,
   retries: 3
 });
 
-// Scrape fighter profile
-const fighter = await scraper.getFighter('conor-mcgregor');
+const discovery = new FighterDiscovery(scraper);
 
+// Method 1: Find fighter by name (easiest - no ID needed!)
+const khabib = await discovery.getFighterByName('Khabib Nurmagomedov');
+console.log(`${khabib.basicInfo.name} - ID: ${khabib.basicInfo.id}`);
+
+// Method 2: Get fighter by full URL
+const jonJones = await scraper.getFighterByUrl('https://www.sherdog.com/fighter/Jon-Jones-27944');
+
+// Method 3: Get fighter by URL slug
+const conor = await scraper.getFighter('Conor-McGregor-29688');
+
+// Method 4: Search and get IDs
+const results = await discovery.searchFightersWithIds('Silva', {
+  organization: 'UFC',
+  limit: 5
+});
+
+// Method 5: Extract ID from URL
+const url = 'https://www.sherdog.com/fighter/Jon-Jones-27944';
+const fighterId = discovery.extractFighterIdFromUrl(url); // "Jon-Jones-27944"
+
+// Method 6: Get popular fighters
+const popularFighters = await discovery.getPopularFighters();
+
+// Access fighter data
+console.log(`${jonJones.basicInfo.name} - ${jonJones.record.wins}-${jonJones.record.losses}-${jonJones.record.draws}`);
+console.log(`Current streak: ${jonJones.winStreak > 0 ? jonJones.winStreak + ' wins' : jonJones.lossStreak + ' losses'}`);
+console.log(`Finish rate: ${jonJones.finishRate.toFixed(1)}%`);
+```
+
+### Event Scraping (Coming Soon)
+
+```javascript
 // Scrape event
 const event = await scraper.getEvent('ufc-264');
-
-// Search fighters
-const results = await scraper.searchFighters('McGregor');
 ```
 
 ## 📋 Next Steps
