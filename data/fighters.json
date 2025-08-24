@@ -1,0 +1,67 @@
+{
+  "jon jones": {
+    "id": "Jon-Jones-27944",
+    "nickname": "Bones",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "anderson silva": {
+    "id": "Anderson-Silva-1356",
+    "nickname": "The Spider",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "conor mcgregor": {
+    "id": "Conor-McGregor-29688",
+    "nickname": "The Notorious",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "khabib nurmagomedov": {
+    "id": "Khabib-Nurmagomedov-56035",
+    "nickname": "The Eagle",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "israel adesanya": {
+    "id": "Israel-Adesanya-56374",
+    "nickname": "The Last Stylebender",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "losene keita": {
+    "id": "Losene-Keita-287481",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "will fleury": {
+    "id": "Will-Fleury-149881",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "kerim engizek": {
+    "id": "Kerim-Engizek-42896",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "ion surdu": {
+    "id": "Ion-Surdu-242649",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "karlos vemola": {
+    "id": "Karlos-Vemola-40238",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "patrik kincl": {
+    "id": "Patrik-Kincl-27549",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "ronald paradeiser": {
+    "id": "Ronald-Paradeiser-189935",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  },
+  "igor severino": {
+    "id": "Igor-Severino-321087",
+    "nickname": "",
+    "lastUpdated": "2024-01-15T10:00:00.000Z"
+  }
+}

@@ -1,8 +1,9 @@
 {
   "name": "sherdog-scraper",
   "version": "1.0.0",
-  "description": "A comprehensive JavaScript package for scraping fighter data, events, and other information from Sherdog.com. This package is designed to be used as a dependency in other applications.",
-  "main": "index.js",
+  "description": "Simple Sherdog fighter data scraper with discovery and search capabilities. Build a fighter database starting from known IDs and search by name.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -13,12 +14,31 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --write src/**/*.ts",
     "clean": "rimraf dist",
+    "example": "npm run build && node examples/simple-usage.js",
     "prepublishOnly": "npm run clean && npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "sherdog",
+    "mma",
+    "ufc",
+    "fighter",
+    "scraper",
+    "puppeteer",
+    "combat-sports",
+    "mixed-martial-arts"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
+  "files": [
+    "dist/**/*",
+    "data/fighters-starter.json",
+    "README.md",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.1.0",

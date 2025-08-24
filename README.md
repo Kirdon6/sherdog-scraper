@@ -1,262 +1,201 @@
 # Sherdog Scraper
 
-A comprehensive JavaScript package for scraping fighter data, events, and other information from Sherdog.com. This package is designed to be used as a dependency in other applications.
+A simple, lightweight npm package for scraping fighter data from Sherdog.com with discovery and search capabilities.
 
-## 🎯 Project Goals
+## 🚀 Key Features
 
-- Scrape fighter profiles, statistics, and fight history
-- Extract event information, fight cards, and results
-- Provide clean, structured data output
-- Handle rate limiting and respect website terms
-- Support both Node.js and browser environments
-- Comprehensive error handling and logging
+- **Fighter Discovery**: Start with known fighter IDs and automatically discover more fighters
+- **Local Database**: Build a JSON database of fighter name-to-ID mappings
+- **Search by Name**: Find fighters by name without knowing their IDs
+- **Starter Database**: Includes 10+ popular fighters out of the box
+- **Puppeteer-based**: Reliable scraping that handles modern websites
+- **Simple API**: Clean, easy-to-use interface
 
-## 📋 Development Roadmap
+## 📦 Installation
 
-### Phase 1: Project Setup & Foundation
-- [x] Initialize npm package with proper structure
-- [x] Set up TypeScript configuration
-- [x] Configure ESLint and Prettier
-- [x] Set up Jest for testing
-- [x] Create package.json with proper metadata
-- [ ] Set up GitHub Actions for CI/CD
-- [x] Configure proper .gitignore
-
-### Phase 2: Core Infrastructure
-- [x] Set up HTTP client (Axios/Fetch) with retry logic
-- [x] Implement rate limiting and request queuing
-- [x] Create base scraper class with common utilities
-- [x] Set up HTML parsing with Cheerio/JSDOM
-- [x] Implement caching mechanism
-- [x] Create logging system
-- [x] Set up configuration management
-
-### Phase 3: Data Models & Types
-- [x] Define TypeScript interfaces for all data structures
-- [x] Create fighter profile data model
-- [x] Define event and fight card structures
-- [x] Set up fight result and statistics models
-- [x] Create organization/weight class enums
-- [x] Define API response types
-
-### Phase 4: Core Scraping Features
-- [x] **Fighter Profile Scraping**
-  - [x] Basic fighter information (name, age, height, weight, etc.)
-  - [x] Fight record and statistics
-  - [x] Fight history with detailed results
-  - [x] Current ranking and status
-
-- [ ] **Event Scraping**
-  - [ ] Event listings and schedules
-  - [ ] Fight card details
-  - [ ] Event results and statistics
-  - [ ] Venue and location information
-  - [ ] Broadcast information
-
-- [ ] **Organization Scraping**
-  - [ ] UFC, Bellator, ONE FC, etc.
-  - [ ] Organization rankings
-  - [ ] Weight class divisions
-  - [ ] Championship information
-
-### Phase 5: Advanced Features
-- [ ] **Search Functionality**
-  - [ ] Fighter search by name
-  - [ ] Event search by date/organization
-  - [ ] Advanced filtering options
-
-- [ ] **Data Processing**
-  - [ ] Data validation and sanitization
-  - [ ] Statistics calculations
-  - [ ] Data transformation utilities
-
-- [ ] **Caching & Performance**
-  - [ ] Redis/file-based caching
-  - [ ] Request deduplication
-  - [ ] Batch processing capabilities
-
-### Phase 6: API & Export Features
-- [ ] **Export Formats**
-  - [ ] JSON export
-  - [ ] CSV export
-  - [ ] XML export
-  - [ ] Database integration helpers
-
-- [ ] **Streaming & Pagination**
-  - [ ] Large dataset handling
-  - [ ] Pagination support
-  - [ ] Streaming responses
-
-### Phase 7: Testing & Documentation
-- [ ] **Unit Tests**
-  - [ ] Test all scraper functions
-  - [ ] Mock HTTP responses
-  - [ ] Test error handling
-  - [ ] Performance testing
-
-- [ ] **Integration Tests**
-  - [ ] End-to-end scraping tests
-  - [ ] Rate limiting tests
-  - [ ] Error recovery tests
-
-- [ ] **Documentation**
-  - [ ] API documentation
-  - [ ] Usage examples
-  - [ ] Best practices guide
-  - [ ] Troubleshooting guide
-
-### Phase 8: Package Publishing
-- [ ] **NPM Package**
-  - [ ] Optimize bundle size
-  - [ ] Create UMD/ESM builds
-  - [ ] Set up proper entry points
-  - [ ] Configure package exports
-
-- [ ] **Documentation Site**
-  - [ ] GitHub Pages setup
-  - [ ] Interactive examples
-  - [ ] API reference
-
-## 🏗️ Project Structure
-
-```
-sherdog-scraper/
-├── src/
-│   ├── core/
-│   │   ├── scraper.ts
-│   │   ├── http-client.ts
-│   │   ├── rate-limiter.ts
-│   │   └── cache.ts
-│   ├── scrapers/
-│   │   ├── fighter-scraper.ts
-│   │   ├── event-scraper.ts
-│   │   └── organization-scraper.ts
-│   ├── models/
-│   │   ├── fighter.ts
-│   │   ├── event.ts
-│   │   └── types.ts
-│   ├── utils/
-│   │   ├── parser.ts
-│   │   ├── validator.ts
-│   │   └── helpers.ts
-│   └── index.ts
-├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── fixtures/
-├── docs/
-├── examples/
-├── dist/
-├── package.json
-├── tsconfig.json
-├── jest.config.js
-├── .eslintrc.js
-├── .prettierrc
-└── README.md
+```bash
+npm install sherdog-scraper
 ```
 
-## 🛠️ Technical Stack
-
-- **Language**: TypeScript
-- **Runtime**: Node.js (with browser support)
-- **HTTP Client**: Axios
-- **HTML Parsing**: Cheerio
-- **Testing**: Jest
-- **Linting**: ESLint + Prettier
-- **Build Tool**: Rollup/Webpack
-- **Documentation**: JSDoc + GitHub Pages
-
-## 📦 Package Features
-
-### Core Features
-- ✅ Fighter profile scraping
-- ✅ Event and fight card data
-- ✅ Organization information
-- ✅ Fight history and statistics
-- ✅ Search functionality
-- ✅ Rate limiting and caching
-- ✅ Error handling and retries
-
-### Advanced Features
-- 🔄 Real-time data updates
-- 📊 Statistics and analytics
-- 🔍 Advanced search filters
-- 📱 Mobile-friendly parsing
-- 🌐 Internationalization support
-- 🔒 Privacy and security features
-
-## 🚀 Usage Examples
-
-### Fighter Scraping & Discovery
+## 🎯 Quick Start
 
 ```javascript
-import { SherdogScraper, FighterDiscovery } from 'sherdog-scraper';
+const { SherdogScraper } = require('sherdog-scraper');
 
-const scraper = new SherdogScraper({
-  rateLimit: 2000, // 2 seconds between requests
-  cache: true,
-  retries: 3
-});
+async function example() {
+  const scraper = new SherdogScraper({
+    rateLimit: 2000,  // 2 seconds between requests
+    verbose: true
+  });
 
-const discovery = new FighterDiscovery(scraper);
+  // Initialize (automatically loads starter database with popular fighters)
+  await scraper.initialize();
 
-// Method 1: Find fighter by name (easiest - no ID needed!)
-const khabib = await discovery.getFighterByName('Khabib Nurmagomedov');
-console.log(`${khabib.basicInfo.name} - ID: ${khabib.basicInfo.id}`);
+  // You can immediately search popular fighters!
+  let results = scraper.searchFighters('Jon Jones');
+  console.log(results); // Works right away!
 
-// Method 2: Get fighter by full URL
-const jonJones = await scraper.getFighterByUrl('https://www.sherdog.com/fighter/Jon-Jones-27944');
+  // Or build a larger database using BFS (Breadth-First Search)
+  await scraper.buildDatabase(['Jon-Jones-27944'], { depth: 2 });
 
-// Method 3: Get fighter by URL slug
-const conor = await scraper.getFighter('Conor-McGregor-29688');
+  // Search for more fighters
+  results = scraper.searchFighters('Silva');
+  console.log(results); // Array of matching fighters
 
-// Method 4: Search and get IDs
-const results = await discovery.searchFightersWithIds('Silva', {
-  organization: 'UFC',
-  limit: 5
-});
+  // Get full fighter data
+  const fighter = await scraper.getFighter('Jon-Jones-27944');
+  console.log(fighter.name, fighter.record); // Jon Jones, {wins: 27, losses: 1, draws: 0}
 
-// Method 5: Extract ID from URL
-const url = 'https://www.sherdog.com/fighter/Jon-Jones-27944';
-const fighterId = discovery.extractFighterIdFromUrl(url); // "Jon-Jones-27944"
-
-// Method 6: Get popular fighters
-const popularFighters = await discovery.getPopularFighters();
-
-// Access fighter data
-console.log(`${jonJones.basicInfo.name} - ${jonJones.record.wins}-${jonJones.record.losses}-${jonJones.record.draws}`);
-console.log(`Current streak: ${jonJones.winStreak > 0 ? jonJones.winStreak + ' wins' : jonJones.lossStreak + ' losses'}`);
-console.log(`Finish rate: ${jonJones.finishRate.toFixed(1)}%`);
+  // Clean up
+  await scraper.cleanup();
+}
 ```
 
-### Event Scraping (Coming Soon)
+## 📚 API Reference
+
+### Constructor
 
 ```javascript
-// Scrape event
-const event = await scraper.getEvent('ufc-264');
+const scraper = new SherdogScraper(config);
 ```
 
-## 📋 Next Steps
+**Config options:**
+- `rateLimit` (number): Milliseconds between requests (default: 2000)
+- `timeout` (number): Request timeout in ms (default: 30000)
+- `verbose` (boolean): Enable logging (default: false)
+- `databasePath` (string): Path to JSON database file (default: './data/fighters.json')
 
-1. **Start with Phase 1**: Set up the basic project structure
-2. **Implement core infrastructure**: HTTP client, rate limiting, parsing
-3. **Build basic scrapers**: Start with fighter profiles
-4. **Add comprehensive testing**: Ensure reliability
-5. **Document everything**: Make it easy for others to use
-6. **Publish to npm**: Make it available as a package
+### Methods
 
-## 🤝 Contributing
+#### `initialize()`
+Initialize the scraper and load existing database.
 
-This package will be open source and contributions are welcome. Please read the contributing guidelines before submitting pull requests.
+```javascript
+await scraper.initialize();
+```
+
+#### `buildDatabase(startingIds, options)`
+Build fighter database using BFS starting from known fighter IDs.
+
+```javascript
+const result = await scraper.buildDatabase(['Jon-Jones-27944'], { 
+  depth: 2,                    // 2 degrees of separation
+  maxFightersPerDepth: 10      // Optional: limit per depth level
+});
+console.log(result.newFighters);     // Array of newly discovered fighter IDs
+console.log(result.fightersByDepth); // Fighters organized by depth level
+console.log(result.depthReached);    // Actual depth reached
+```
+
+#### `searchFighters(query)`
+Search for fighters by name (uses local database).
+
+```javascript
+const results = scraper.searchFighters('Jon Jones');
+// Returns: [{ id: 'Jon-Jones-27944', name: 'Jon Jones', nickname: 'Bones', url: '...' }]
+```
+
+#### `getFighter(fighterId)`
+Get complete fighter data by ID.
+
+```javascript
+const fighter = await scraper.getFighter('Jon-Jones-27944');
+console.log(fighter);
+// Returns: { id, name, nickname, record: {wins, losses, draws}, weightClass, ... }
+```
+
+#### `getFighterByUrl(url)`
+Get fighter data by full Sherdog URL.
+
+```javascript
+const fighter = await scraper.getFighterByUrl('https://www.sherdog.com/fighter/Jon-Jones-27944');
+```
+
+#### `expandDatabase(options)`
+Expand existing database by discovering more fighters using BFS.
+
+```javascript
+const result = await scraper.expandDatabase({ depth: 1 });
+```
+
+#### `getDatabaseStats()`
+Get database statistics.
+
+```javascript
+const stats = scraper.getDatabaseStats();
+console.log(stats.totalFighters); // Number of fighters in database
+```
+
+#### `cleanup()`
+Close browser and clean up resources.
+
+```javascript
+await scraper.cleanup();
+```
+
+## 🗂️ Database Structure
+
+The scraper creates a JSON file with fighter mappings:
+
+```json
+{
+  "jon jones": {
+    "id": "Jon-Jones-27944",
+    "nickname": "Bones",
+    "lastUpdated": "2024-01-15T10:30:00.000Z"
+  },
+  "anderson silva": {
+    "id": "Anderson-Silva-1356",
+    "nickname": "The Spider",
+    "lastUpdated": "2024-01-15T10:31:00.000Z"
+  }
+}
+```
+
+## 🔄 Discovery Process
+
+1. **Start**: Provide known fighter IDs (like "Jon-Jones-27944")
+2. **Scrape**: Extract fighter data and find links to other fighters
+3. **Discover**: Follow links to discover new fighters
+4. **Store**: Save name-to-ID mappings in JSON database
+5. **Search**: Use database for fast name-based searches
+
+## 💡 Use Cases
+
+### Building a Fighter Search API
+
+```javascript
+// Build database once using BFS
+await scraper.buildDatabase(['Jon-Jones-27944', 'Anderson-Silva-1356'], { depth: 2 });
+
+// Use in your application
+app.get('/api/search/:name', (req, res) => {
+  const results = scraper.searchFighters(req.params.name);
+  res.json(results);
+});
+```
+
+### Expanding Database Periodically
+
+```javascript
+// Expand database with new fighters using BFS
+setInterval(async () => {
+  await scraper.expandDatabase({ depth: 1 });
+  console.log('Database expanded');
+}, 24 * 60 * 60 * 1000); // Daily
+```
+
+## ⚠️ Important Notes
+
+- **Rate Limiting**: Default 2-second delays between requests to respect Sherdog's servers
+- **Database Persistence**: Fighter mappings are saved to JSON file for reuse
+- **Browser Resources**: Always call `cleanup()` to close Puppeteer browser
+- **Error Handling**: Wrap scraper calls in try-catch blocks
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+MIT
 
-## ⚠️ Legal Notice
+## 🤝 Contributing
 
-This scraper respects Sherdog's robots.txt and implements proper rate limiting. Users are responsible for complying with Sherdog's terms of service and applicable laws when using this package.
-
----
-
-**Ready to start?** Let's begin with Phase 1 and set up the project foundation! 
+Issues and pull requests welcome!
